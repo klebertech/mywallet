@@ -7,9 +7,9 @@
 
 Aplication to control spenses.
 
-### Stack used:
+> ### Stack used:
 
-Javascript
-React
-Vite
-MaterialUI
+> - Javascript
+> - React
+> - Vite
+> - MaterialUI

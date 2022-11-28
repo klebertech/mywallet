@@ -1,13 +1,13 @@
 import React from 'react';
+import AddSpenseButton from '../components/AddSpenseButton';
+import Header from '../components/Header';
 import './home.css';
 
 function Home() {
   return (
     <div>
-      <div className="header">
-        <h1>Saldo</h1>
-        <span>R$100</span>
-      </div>
+      <Header />
+      <AddSpenseButton />
     </div>
   );
 }

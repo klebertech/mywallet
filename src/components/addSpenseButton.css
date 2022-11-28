@@ -1,10 +1,11 @@
 .addBtn {
   background-color: #336699;
-  border-radius: 12px;
+  border: 0;
+  border-radius: 20px;
   color: #fff;
   font-size: 24px;
   font-weight: bold;
-  height: 36px;
-  margin: 40px 20% 0 20%;
-  padding-top: 10px;
-} /*# sourceMappingURL=AddSpenseButton.css.map */
+  padding: 10px;
+  margin-top: 20px;
+  width: 80%;
+}/*# sourceMappingURL=addSpenseButton.css.map */

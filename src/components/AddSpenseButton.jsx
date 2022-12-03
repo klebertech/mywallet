@@ -1,7 +1,7 @@
 import { Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
-import './addSpenseButton.css';
+import './styles/addSpenseButton.css';
 
 const style = {
   position: 'absolute',
@@ -22,7 +22,7 @@ function AddSpenseButton() {
 
   return (
     <div>
-      <div className="container">
+      <div className="containerBtn">
         <button type="button" className="addBtn" onClick={handleOpen}>
           Adicionar Despesa
         </button>

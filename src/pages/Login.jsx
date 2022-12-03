@@ -1,10 +1,12 @@
 import { Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import GoogleIcon from '@mui/icons-material/Google';
-import './login.css';
-import React from 'react';
+import './styles/login.css';
+import React, { useContext } from 'react';
+import Context from '../context/Context';
 
 function Home() {
+  const { handleEmail } = useContext(Context);
   return (
     <div className="container">
       <Container
@@ -19,6 +21,7 @@ function Home() {
           label="Login"
           margin="dense"
           sx={{ label: { color: '#fff' }, input: { color: '#fff' } }}
+          onChange={handleEmail}
         />
         <TextField
           fullWidth

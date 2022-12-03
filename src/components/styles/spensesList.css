@@ -1,0 +1,22 @@
+.spenses-list {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  padding: 10px 0 10px 0;
+  text-align: center;
+}
+.spenses-list ul {
+  padding: 0;
+}
+.spenses-list ul li {
+  align-items: center;
+  background-color: #86BBD8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 15px 15px 15px 15px;
+  padding: 5px 0 5px 0;
+}/*# sourceMappingURL=spensesList.css.map */

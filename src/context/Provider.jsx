@@ -15,7 +15,7 @@ function Provider({ children }) {
       email,
       handleEmail,
     }),
-    []
+    [email]
   );
 
   return <Context.Provider value={contexts}>{children}</Context.Provider>;

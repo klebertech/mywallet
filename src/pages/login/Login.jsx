@@ -1,12 +1,16 @@
 import { Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import GoogleIcon from '@mui/icons-material/Google';
-import './styles/login.css';
+import './login.css';
 import React, { useContext } from 'react';
-import Context from '../context/Context';
+import { GoogleAuthProvider } from 'firebase/auth';
+import Context from '../../context/Context';
+
+const provider = new GoogleAuthProvider();
 
 function Home() {
   const { handleEmail } = useContext(Context);
+
   return (
     <div className="container">
       <Container

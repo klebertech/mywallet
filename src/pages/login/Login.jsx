@@ -3,13 +3,32 @@ import { Container } from '@mui/system';
 import GoogleIcon from '@mui/icons-material/Google';
 import './login.css';
 import React, { useContext } from 'react';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import Context from '../../context/Context';
+import app from '../../services/auth';
 
 const provider = new GoogleAuthProvider();
 
 function Home() {
   const { handleEmail } = useContext(Context);
+
+  const auth = getAuth(app);
+
+  const signInGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const { user } = result;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const { email } = error.customData;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
 
   return (
     <div className="container">
@@ -41,6 +60,7 @@ function Home() {
           variant="contained"
           endIcon={<GoogleIcon />}
           sx={{ marginTop: 2 }}
+          onClick={signInGoogle}
         >
           Login With
         </Button>

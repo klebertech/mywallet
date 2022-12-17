@@ -1,23 +1,38 @@
 /* eslint-disable react/jsx-filename-extension */
 import PropTypes from 'prop-types';
 import React, { useMemo, useState } from 'react';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import Context from './Context';
+import app from '../services/auth';
+
+const provider = new GoogleAuthProvider();
 
 function Provider({ children }) {
-  const [email, setEmail] = useState('');
+  const [userlocal, setUser] = useState(null);
+  const navigate = useNavigate();
+  const auth = getAuth(app);
 
-  const handleEmail = ({ target }) => {
-    setEmail(target.value);
+  const signInGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const { user } = result;
+        sessionStorage.setItem('@AuthFirebase:token', token);
+        sessionStorage.setItem('@AuthFirebase:user', JSON.stringify(user));
+        setUser(user);
+        navigate('/home');
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
-  const contexts = useMemo(
-    () => ({
-      email,
-      handleEmail,
-    }),
-    [email]
-  );
-
+  const contexts = useMemo(() => ({ signInGoogle, userlocal }));
   return <Context.Provider value={contexts}>{children}</Context.Provider>;
 }
 

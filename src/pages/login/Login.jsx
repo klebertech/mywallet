@@ -3,32 +3,11 @@ import { Container } from '@mui/system';
 import GoogleIcon from '@mui/icons-material/Google';
 import './login.css';
 import React, { useContext } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import Context from '../../context/Context';
-import app from '../../services/auth';
 
-const provider = new GoogleAuthProvider();
+import Context from '../../context/Context';
 
 function Home() {
-  const { handleEmail } = useContext(Context);
-
-  const auth = getAuth(app);
-
-  const signInGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const { user } = result;
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const { email } = error.customData;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      });
-  };
+  const { signInGoogle } = useContext(Context);
 
   return (
     <div className="container">
@@ -44,7 +23,7 @@ function Home() {
           label="Login"
           margin="dense"
           sx={{ label: { color: '#fff' }, input: { color: '#fff' } }}
-          onChange={handleEmail}
+          // onChange={handleEmail}
         />
         <TextField
           fullWidth

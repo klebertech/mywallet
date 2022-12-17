@@ -11,7 +11,7 @@ function Header() {
       <h2>Saldo</h2>
       <span>R$100</span>
       <Avatar
-        alt="Remy Sharp"
+        alt={userlocal.displayName}
         src={userlocal.photoURL}
         sx={{ width: 56, height: 56, marginLeft: 2, marginTop: -10 }}
       />

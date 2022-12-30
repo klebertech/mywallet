@@ -22,7 +22,10 @@ function Home() {
           fullWidth
           label="Login"
           margin="dense"
-          sx={{ label: { color: '#fff' }, input: { color: '#fff' } }}
+          sx={{
+            label: { color: '#fff' },
+            input: { color: '#fff' },
+          }}
           // onChange={handleEmail}
         />
         <TextField

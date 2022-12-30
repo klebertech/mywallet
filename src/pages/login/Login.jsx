@@ -26,7 +26,6 @@ function Home() {
             label: { color: '#fff' },
             input: { color: '#fff' },
           }}
-          // onChange={handleEmail}
         />
         <TextField
           fullWidth

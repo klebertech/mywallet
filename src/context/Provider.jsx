@@ -23,7 +23,6 @@ function Provider({ children }) {
         sessionStorage.setItem('@AuthFirebase:user', JSON.stringify(user));
         setUser(user);
         navigate('/home');
-        console.log(user);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -31,7 +30,20 @@ function Provider({ children }) {
       });
   };
 
-  const contexts = useMemo(() => ({ signInGoogle, userlocal }));
+  const setLocalStorage = (data) => {
+    const getDataLocal = JSON.parse(localStorage.getItem('Spenses'));
+    if (!getDataLocal) {
+      localStorage.setItem('Spenses', JSON.stringify([data]));
+    } else {
+      localStorage.setItem('Spenses', JSON.stringify([...getDataLocal, data]));
+    }
+  };
+
+  const contexts = useMemo(() => ({
+    signInGoogle,
+    userlocal,
+    setLocalStorage,
+  }));
   return <Context.Provider value={contexts}>{children}</Context.Provider>;
 }
 

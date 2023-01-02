@@ -26,7 +26,7 @@ const modalStyle = {
 };
 
 function AddSpenseButton() {
-  const { setLocalStorage } = useContext(context);
+  const { setSpensesLocalStorage } = useContext(context);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [value, setValue] = useState('');
@@ -43,7 +43,8 @@ function AddSpenseButton() {
       category,
       date,
     };
-    setLocalStorage(spenseObj);
+    setSpensesLocalStorage(spenseObj);
+    handleClose();
   };
 
   return (

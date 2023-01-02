@@ -9,7 +9,7 @@ import app from '../services/auth';
 const provider = new GoogleAuthProvider();
 
 function Provider({ children }) {
-  const [userlocal, setUser] = useState(null);
+  const [userGlobal, setUserGlobal] = useState(null);
   const navigate = useNavigate();
   const auth = getAuth(app);
 
@@ -21,7 +21,7 @@ function Provider({ children }) {
         const { user } = result;
         sessionStorage.setItem('@AuthFirebase:token', token);
         sessionStorage.setItem('@AuthFirebase:user', JSON.stringify(user));
-        setUser(user);
+        setUserGlobal(user);
         navigate('/home');
       })
       .catch((error) => {
@@ -30,7 +30,7 @@ function Provider({ children }) {
       });
   };
 
-  const setLocalStorage = (data) => {
+  const setSpensesLocalStorage = (data) => {
     const getDataLocal = JSON.parse(localStorage.getItem('Spenses'));
     if (!getDataLocal) {
       localStorage.setItem('Spenses', JSON.stringify([data]));
@@ -39,10 +39,19 @@ function Provider({ children }) {
     }
   };
 
+  const getLocalStorage = () => {
+    const getUserLocal = JSON.parse(
+      sessionStorage.getItem('@AuthFirebase:user')
+    );
+    setUserGlobal(getUserLocal);
+    return getUserLocal;
+  };
+
   const contexts = useMemo(() => ({
+    userGlobal,
     signInGoogle,
-    userlocal,
-    setLocalStorage,
+    setSpensesLocalStorage,
+    getLocalStorage,
   }));
   return <Context.Provider value={contexts}>{children}</Context.Provider>;
 }

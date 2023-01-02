@@ -2,12 +2,21 @@ import { Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import GoogleIcon from '@mui/icons-material/Google';
 import './login.css';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import Context from '../../context/Context';
 
 function Home() {
-  const { signInGoogle } = useContext(Context);
+  const { signInGoogle, getLocalStorage } = useContext(Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = getLocalStorage();
+    if (user) {
+      navigate('/home');
+    }
+  }, []);
 
   return (
     <div className="container">

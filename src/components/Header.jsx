@@ -1,15 +1,13 @@
 import { Avatar } from '@mui/material';
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import context from '../context/Context';
 import './styles/header.css';
 
 function Header() {
-  const { userlocal } = useContext(context);
-  const [user, setUser] = useState('');
+  const { userGlobal, getLocalStorage } = useContext(context);
 
   useEffect(() => {
-    const getUser = JSON.parse(sessionStorage.getItem('@AuthFirebase:user'));
-    setUser(getUser);
+    getLocalStorage();
   }, []);
 
   return (
@@ -17,8 +15,8 @@ function Header() {
       <h2>Saldo</h2>
       <span>R$100</span>
       <Avatar
-        alt={userlocal.displayName}
-        src={user?.photoURL}
+        alt={userGlobal?.displayName}
+        src={userGlobal?.photoURL}
         sx={{ width: 56, height: 56, marginLeft: 2, marginTop: -10 }}
       />
     </div>

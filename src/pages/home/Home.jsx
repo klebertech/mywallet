@@ -1,7 +1,7 @@
 import React from 'react';
 import AddSpense from '../../components/AddSpense';
 import Header from '../../components/Header';
-import SpensesList from '../../components/SpensesList';
+import List from '../../components/List';
 import './home.css';
 
 function Home() {
@@ -9,7 +9,7 @@ function Home() {
     <div>
       <Header />
       <AddSpense />
-      <SpensesList />
+      <List />
     </div>
   );
 }

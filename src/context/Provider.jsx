@@ -10,6 +10,7 @@ const provider = new GoogleAuthProvider();
 
 function Provider({ children }) {
   const [userGlobal, setUserGlobal] = useState(null);
+  const [spenses, setSpenses] = useState(null);
   const navigate = useNavigate();
   const auth = getAuth(app);
 
@@ -30,6 +31,12 @@ function Provider({ children }) {
       });
   };
 
+  const getSpensesLocalStorage = () => {
+    const data = JSON.parse(localStorage.getItem('Spenses'));
+    setSpenses(data);
+    return data;
+  };
+
   const setSpensesLocalStorage = (data) => {
     const getDataLocal = JSON.parse(localStorage.getItem('Spenses'));
     if (!getDataLocal) {
@@ -37,9 +44,10 @@ function Provider({ children }) {
     } else {
       localStorage.setItem('Spenses', JSON.stringify([...getDataLocal, data]));
     }
+    setSpenses(getSpensesLocalStorage());
   };
 
-  const getLocalStorage = () => {
+  const getUserLocalStorage = () => {
     const getUserLocal = JSON.parse(
       sessionStorage.getItem('@AuthFirebase:user')
     );
@@ -47,12 +55,17 @@ function Provider({ children }) {
     return getUserLocal;
   };
 
-  const contexts = useMemo(() => ({
-    userGlobal,
-    signInGoogle,
-    setSpensesLocalStorage,
-    getLocalStorage,
-  }));
+  const contexts = useMemo(
+    () => ({
+      userGlobal,
+      spenses,
+      signInGoogle,
+      setSpensesLocalStorage,
+      getSpensesLocalStorage,
+      getUserLocalStorage,
+    }),
+    [userGlobal, spenses]
+  );
   return <Context.Provider value={contexts}>{children}</Context.Provider>;
 }
 

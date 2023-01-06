@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import Context from '../../context/Context';
 
 function Home() {
-  const { signInGoogle, getLocalStorage } = useContext(Context);
+  const { signInGoogle, getUserLocalStorage } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = getLocalStorage();
+    const user = getUserLocalStorage();
     if (user) {
       navigate('/home');
     }

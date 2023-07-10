@@ -13,7 +13,7 @@ function Header() {
   return (
     <div className="header">
       <h2>Saldo</h2>
-      <span>R$100</span>
+      <span>R$1000</span>
       {!userGlobal ? (
         <CircularProgress />
       ) : (
